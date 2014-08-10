@@ -49,6 +49,10 @@ def main():
 	idx.load(options.repo_dir)
 
 	mgr = NoteManager(options.repo_dir, idx)
-	mgr.add(cmds)
+	res = eval("mgr.{0}(cmds)".format(cmds.command))
+
+	print(res)
+
+	idx.save(options.repo_dir)
 
 main()

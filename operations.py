@@ -54,3 +54,14 @@ class NoteManager:
 			self.__update_idx(op)
 		except Error as err:
 			print(err)
+
+	def read(self, op):
+		if self.__index:
+			matches = self.__idx.search(op)
+			if len(matches.titles) > 0:
+				fh = open(self.__path(op.title), "r")
+				return fh.read()
+
+	def find(self, op):
+		if self.__idx:
+			return self.__idx.search(op)

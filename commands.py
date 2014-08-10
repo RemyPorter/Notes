@@ -1,4 +1,4 @@
 import collections
-Cmd = collections.namedtuple("Cmd", "add edit delete find")
+Cmd = collections.namedtuple("Cmd", "add edit delete find read")
 Op = collections.namedtuple("Op", "command title body params")
-commands = Cmd("add", "edit", "delete", "find")
+commands = Cmd("add", "edit", "delete", "find", "read")
