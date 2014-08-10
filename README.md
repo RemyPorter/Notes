@@ -13,4 +13,4 @@ Searching is not yet implemented.
 Notes are stored in ~/.notes, but this can be changed with the -d flag. The -c flag will clean out the current repository.
 
 # Will support…
-Eventually, I plan to make this tool use git for versioning.
+Eventually, I plan to make this tool use git for versioning. Eventually, the index will migrate to a real database, but for right now, I'm just pickling dictionaries.
