@@ -8,7 +8,9 @@ This Python application is a CLI version of Notational Velocity's note-taking.
 
 > note.py edit title "new body" moreTag1 moreTag2
 
-Searching is not yet implemented.
+> note.py find searchterm #finds titles, tags, and notes that contain that word
+
+> note.py read title #prints the contents of that note
 
 Notes are stored in ~/.notes, but this can be changed with the -d flag. The -c flag will clean out the current repository.
 
