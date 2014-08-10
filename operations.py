@@ -56,7 +56,7 @@ class NoteManager:
 			print(err)
 
 	def read(self, op):
-		if self.__index:
+		if self.__idx:
 			matches = self.__idx.search(op)
 			if len(matches.titles) > 0:
 				fh = open(self.__path(op.title), "r")

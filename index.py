@@ -34,9 +34,9 @@ class Index:
 			self.__add_title(op)
 
 	def search(self, op):
-		title_match = {}
-		keyword_match = {}
-		word_match = {}
+		title_match = set()
+		keyword_match = set()
+		word_match = set()
 		if op.title in self.__titles:
 			title_match.add(op.title)
 		keyword_match = self.__keywords[op.title]
