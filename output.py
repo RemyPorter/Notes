@@ -1,3 +1,5 @@
+from markdown import markdown
+
 def __write(data):
 	print(data)
 
@@ -18,3 +20,6 @@ def output(data):
 		__write(data)
 	else:
 		__write_results(data)
+
+def mdown(text):
+	print(markdown(text))

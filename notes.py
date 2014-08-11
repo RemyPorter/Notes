@@ -17,6 +17,7 @@ def build_CLI():
 	parser.add_option("-d", "--dir", dest="repo_dir", help="Set the directory to use for finding/reading/managing notes.", default="~/.notes")
 	parser.add_option("-p", "--partial", action="store_true", dest="partial_match", help="Allow partial matching on title to find notes", default=False)
 	parser.add_option("-c", "--cleanout", action="store_true", dest="clean_out", help="Clear the active repo entirely. DESTROYS ALL NOTES.", default=False)
+	parser.add_option("-m", "--html", action="store_true", dest="markdown", help="Used with read. Outputs in HTML, after markdown processing.", default=False)
 	#todo: this needs some features to help manage git history, because this is going to use a git repo
 	return parser
 
@@ -25,7 +26,7 @@ def parse_commands(cmds, parser):
 		if not cmds[0] in commands:
 			raise ValueError
 		operation = None
-		if cmds[0] == commands.add:
+		if cmds[0] in [commands.add, commands.edit]:
 			if (len(cmds) == 3):
 				cmds += [None]
 			operation = Op(cmds[0], cmds[1], cmds[2], cmds[3:])
@@ -52,7 +53,10 @@ def main():
 	mgr = NoteManager(options.repo_dir, idx)
 	res = eval("mgr.{0}(cmds)".format(cmds.command))
 
-	output.output(res)
+	if res and options.markdown and cmds.command == commands.read:
+		output.mdown(res)
+	elif res:
+		output.output(res)
 
 	idx.save(options.repo_dir)
 

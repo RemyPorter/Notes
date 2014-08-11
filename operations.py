@@ -49,10 +49,11 @@ class NoteManager:
 	@indexed
 	def edit(self, op):
 		try:
-			self.del_note(op)
-			self.add_note(op)
+			print(op)
+			self.delete(op)
+			self.add(op)
 			self.__update_idx(op)
-		except Error as err:
+		except Exception as err:
 			print(err)
 
 	def read(self, op):
