@@ -10,6 +10,7 @@ from operations import NoteManager
 import notedir
 from commands import commands, Op
 import index
+import output
 
 def build_CLI():
 	parser = OptionParser()
@@ -51,7 +52,7 @@ def main():
 	mgr = NoteManager(options.repo_dir, idx)
 	res = eval("mgr.{0}(cmds)".format(cmds.command))
 
-	print(res)
+	output.output(res)
 
 	idx.save(options.repo_dir)
 
