@@ -15,4 +15,4 @@ This Python application is a CLI version of Notational Velocity's note-taking.
 Notes are stored in ~/.notes, but this can be changed with the -d flag. The -c flag will clean out the current repository.
 
 # Will support…
-Eventually, I plan to make this tool use git for versioning. Eventually, the index will migrate to a real database, but for right now, I'm just pickling dictionaries.
+Eventually, I plan to make this tool use git for versioning. The index will migrate to a real database, but for right now, I'm just pickling dictionaries. This will have some scaling problems with very large note databases (the -d flag is a good way to avoid that problem). A render command is coming which will add support to output notes to markdown.
