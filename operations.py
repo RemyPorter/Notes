@@ -42,17 +42,14 @@ class NoteManager:
 	def delete(self, op):
 		try:
 			os.remove(self.__path(op.title))
-			self.__update_idx(op)
 		except Exception as err:
 			print(err)
 
 	@indexed
 	def edit(self, op):
 		try:
-			print(op)
 			self.delete(op)
 			self.add(op)
-			self.__update_idx(op)
 		except Exception as err:
 			print(err)
 
