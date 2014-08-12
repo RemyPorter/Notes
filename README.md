@@ -12,6 +12,8 @@ This Python application is a CLI version of Notational Velocity's note-taking.
 
 > note.py read title #prints the contents of that note
 
+> note.py log #prints the git history of the note versions
+
 Notes are stored in ~/.notes, but this can be changed with the -d flag. The -c flag will clean out the current repository.
 
 # Will support…
