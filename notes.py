@@ -2,8 +2,6 @@
 
 import os
 import os.path
-import shutil
-from sh import git
 from optparse import OptionParser
 import collections
 from operations import NoteManager
@@ -30,6 +28,8 @@ def parse_commands(cmds, parser):
 			if (len(cmds) == 3):
 				cmds += [None]
 			operation = Op(cmds[0], cmds[1], cmds[2], cmds[3:])
+		elif cmds[0] in [commands.changelog]:
+			operation = Op(cmds[0], None, None, None)
 		else:
 			operation = Op(cmds[0], cmds[1], None, cmds[2:])
 		return operation
