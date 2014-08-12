@@ -33,7 +33,7 @@ class Git:
 			sh.git("commit", "-a", m="Initial create.")
 		
 	def opstring(self, op):
-		return "{0.command}: {0.title} with body {0.body} {0.params]".format(op)	
+		return "{0.command}: {0.title} with body {0.body} {0.params}".format(op)	
 
 	@dirvert
 	def commit(self, op):
@@ -46,4 +46,10 @@ class Git:
 	@dirvert
 	def show_log(self):
 		print(sh.git("log"))
+
+	@dirvert
+	def undo(self, changes):
+		reverts = " ".join(changes)
+		sh.git("revert", "--no-edit","-n", changes)
+		sh.git("commit", "-a", m="Reverted: {0}".format(changes))
 

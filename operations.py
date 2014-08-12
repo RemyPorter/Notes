@@ -69,3 +69,6 @@ class NoteManager:
 
 	def log(self, op):
 		self.__version.show_log()
+
+	def undo(self, op):
+		self.__version.undo(op.params)
