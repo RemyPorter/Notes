@@ -53,3 +53,7 @@ class Git:
 		sh.git("revert", "--no-edit","-n", changes)
 		sh.git("commit", "-a", m="Reverted: {0}".format(changes))
 
+	@dirvert
+	def git(self, params):
+		print(sh.git(*params))
+

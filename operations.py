@@ -72,3 +72,6 @@ class NoteManager:
 
 	def undo(self, op):
 		self.__version.undo(op.params)
+
+	def git(self, op):
+		self.__version.git(op.params)

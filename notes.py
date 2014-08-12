@@ -30,7 +30,7 @@ def parse_commands(cmds, parser):
 			operation = Op(cmds[0], cmds[1], cmds[2], cmds[3:])
 		elif cmds[0] in [commands.changelog]:
 			operation = Op(cmds[0], None, None, None)
-		elif cmds[0] in [commands.revert]:
+		elif cmds[0] in [commands.revert, commands.git]:
 			operation = Op(cmds[0], None, None, cmds[1:])
 		else:
 			operation = Op(cmds[0], cmds[1], None, cmds[2:])
