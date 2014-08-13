@@ -9,6 +9,7 @@ import notedir
 from commands import commands, Op
 import index
 import output
+import versioner
 
 def build_CLI():
 	parser = OptionParser()
@@ -51,8 +52,9 @@ def main():
 
 	idx = index.Index()
 	idx.load(options.repo_dir)
+	versions = versioner.Git(options.repo_dir)
 
-	mgr = NoteManager(options.repo_dir, idx)
+	mgr = NoteManager(options.repo_dir, idx, versions)
 	res = eval("mgr.{0}(cmds)".format(cmds.command))
 
 	if res and options.markdown and cmds.command == commands.read:

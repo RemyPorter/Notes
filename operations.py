@@ -1,5 +1,4 @@
 import os
-import versioner
 
 def indexed(function):
 	def wrapper(*args, **kwargs):
@@ -13,8 +12,8 @@ def indexed(function):
 	return wrapper
 
 class NoteManager:
-	def __init__(self, repo_path, index=None):
-		self.__version = versioner.Git(repo_path)
+	def __init__(self, repo_path, index=None, versioner=None):
+		self.__version = versioner
 		self.__repo = repo_path
 		self.__fmt = ".md"
 		self.__idx = index
@@ -68,10 +67,13 @@ class NoteManager:
 			return self.__idx.search(op)
 
 	def log(self, op):
-		self.__version.show_log()
+		if self.__version:
+			self.__version.show_log()
 
 	def undo(self, op):
-		self.__version.undo(op.params)
+		if self.__version:
+			self.__version.undo(op.params)
 
 	def git(self, op):
-		self.__version.git(op.params)
+		if self.__version:
+			self.__version.git(op.params)
