@@ -77,3 +77,7 @@ class NoteManager:
 	def git(self, op):
 		if self.__version:
 			self.__version.git(op.params)
+
+	def list(self, op):
+		if self.__idx:
+			return self.__idx.list()

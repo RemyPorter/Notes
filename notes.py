@@ -29,7 +29,7 @@ def parse_commands(cmds, parser):
 			if (len(cmds) == 3):
 				cmds += [None]
 			operation = Op(cmds[0], cmds[1], cmds[2], cmds[3:])
-		elif cmds[0] in [commands.changelog]:
+		elif cmds[0] in [commands.changelog, commands.list]:
 			operation = Op(cmds[0], None, None, None)
 		elif cmds[0] in [commands.revert, commands.git]:
 			operation = Op(cmds[0], None, None, cmds[1:])
@@ -50,7 +50,7 @@ def main():
 		notedir.clean_out(options.repo_dir)
 	notedir.check_dir(options.repo_dir)
 
-	idx = index.Index()
+	idx = index.Index(options.partial_match)
 	idx.load(options.repo_dir)
 	versions = versioner.Git(options.repo_dir)
 

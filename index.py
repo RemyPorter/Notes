@@ -5,10 +5,11 @@ from commands import commands
 
 SearchResult = namedtuple("SearchResult", "titles keywords words")
 class Index:
-	def __init__(self):
+	def __init__(self, partial_match=False):
 		self.__keywords = defaultdict(set)
 		self.__words = defaultdict(set)
 		self.__titles = set()
+		self.__partial = partial_match
 
 	def __add_keywords(self, op):
 		keys = op.params
@@ -33,7 +34,7 @@ class Index:
 			self.__add_words(op)
 			self.__add_title(op)
 
-	def search(self, op):
+	def __full_search(self, op):
 		title_match = set()
 		keyword_match = set()
 		word_match = set()
@@ -42,6 +43,32 @@ class Index:
 		keyword_match = self.__keywords[op.title]
 		word_match = self.__words[op.title]
 		return SearchResult(title_match, keyword_match, word_match)
+
+	def __partial_search(self, op):
+		title_match = set()
+		keyword_match = set()
+		word_match = set()
+		for t in self.__titles:
+			if op.title in t:
+				title_match.add(t)
+		for k in self.__keywords.keys():
+			if op.title in k:
+				for title in self.__keywords[k]:
+					keyword_match.add(title)
+		for w in self.__words.keys():
+			if op.title in w:
+				for title in self.__words[w]:
+					word_match.add(title)
+		return SearchResult(title_match, keyword_match, word_match)
+
+	def search(self, op):
+		if not self.__partial:
+			return self.__full_search(op)
+		else:
+			return self.__partial_search(op)
+
+	def list(self):
+		return self.__titles
 
 	def save(self, repo_path):
 		storage = [self.__keywords, self.__words, self.__titles]
